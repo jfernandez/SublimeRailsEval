@@ -6,11 +6,14 @@ class RailsEvalCommand(sublime_plugin.TextCommand):
             ruby_code = self.view.substr(region)
 
         self.panel = self.view.window().get_output_panel('exec')
-        command = "~/.rvm/bin/rvm-auto-ruby script/runner '%(ruby_code)s'" % locals()
+        settings = sublime.load_settings("RailsEval.sublime-settings")
+        ruby_path = settings.get("ruby_path")
+        rails_path = settings.get("rails_path")
+        command = "%(ruby_path)s script/runner '%(ruby_code)s'" % locals()
 
         self.view.window().run_command("exec", {
             "cmd": [command],
             "shell": True,
-            "working_dir": "/path/to/rails_app"
+            "working_dir": rails_path
         })
         self.view.window().run_command("show_panel", {"panel": "output.test_panel"})

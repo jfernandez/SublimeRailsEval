@@ -1,0 +1,4 @@
+{
+  "ruby_path": "~/.rvm/bin/rvm-auto-ruby",
+  "rails_path": "/path/to/project"
+}
