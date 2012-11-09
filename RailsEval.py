@@ -1,16 +1,25 @@
 import sublime, sublime_plugin
+import tempfile, shutil, os
 
 class RailsEvalCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         for region in self.view.sel():
             ruby_code = self.view.substr(region)
 
-        self.panel = self.view.window().get_output_panel('exec')
-        settings = sublime.load_settings("RailsEval.sublime-settings")
-        ruby_path = settings.get("ruby_path")
-        rails_path = settings.get("rails_path")
-        command = "%(ruby_path)s script/runner '%(ruby_code)s'" % locals()
+        # Copy the Ruby code to a temp file
+        fd, path = tempfile.mkstemp()
+        os.write(fd, ruby_code)
+        os.close(fd)
 
+        # Fetch the settings
+        settings   = sublime.load_settings("RailsEval.sublime-settings")
+        ruby_path  = settings.get("ruby_path")
+        rails_path = settings.get("rails_path")
+
+        # Build the shell command
+        command = "%(ruby_path)s script/runner %(path)s" % locals()
+
+        # Use Sublime's API to run a shell command
         self.view.window().run_command("exec", {
             "cmd": [command],
             "shell": True,
