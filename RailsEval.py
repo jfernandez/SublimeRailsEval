@@ -16,4 +16,3 @@ class RailsEvalCommand(sublime_plugin.TextCommand):
             "shell": True,
             "working_dir": rails_path
         })
-        self.view.window().run_command("show_panel", {"panel": "output.test_panel"})
