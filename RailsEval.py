@@ -12,12 +12,13 @@ class RailsEvalCommand(sublime_plugin.TextCommand):
         os.close(fd)
 
         # Fetch the settings
-        settings   = sublime.load_settings("RailsEval.sublime-settings")
-        ruby_path  = settings.get("ruby_path")
-        rails_path = settings.get("rails_path")
+        settings      = sublime.load_settings("RailsEval.sublime-settings")
+        ruby_path     = settings.get("ruby_path")
+        rails_path    = settings.get("rails_path")
+        script_runner = settings.get("script_runner")
 
         # Build the shell command
-        command = "%(ruby_path)s script/runner %(path)s" % locals()
+        command = "%(ruby_path)s %(script_runner)s %(path)s" % locals()
 
         # Use Sublime's API to run a shell command
         self.view.window().run_command("exec", {

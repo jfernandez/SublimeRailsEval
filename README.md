@@ -25,11 +25,11 @@ Make a copy of `RailsEval.sublime-settings` file to `~/Library/Application Suppo
 
 If you're using RVM, set use this as your ruby_path: `~/.rvm/bin/rvm-auto-ruby`
 
+For Rails 3, set script_runner to `rails runner`
+
 
 Usage
 -----
-
-Note: This currently only works in Rails 2
 
 Select a piece of Rails code and run: `Command-Option-r`
 
@@ -39,5 +39,6 @@ Settings:
 
     {
       "ruby_path": "ruby",
-      "rails_path": "/path/to/project"
+      "rails_path": "/path/to/project",
+      "script_runner": "script/runner"
     }

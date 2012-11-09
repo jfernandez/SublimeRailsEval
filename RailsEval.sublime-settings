@@ -1,4 +1,5 @@
 {
   "ruby_path": "ruby",
-  "rails_path": "/path/to/project"
+  "rails_path": "/path/to/project",
+  "script_runner": "script/runner"
 }
