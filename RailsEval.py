@@ -1,5 +1,5 @@
 import sublime, sublime_plugin
-import tempfile, shutil, os
+import tempfile, os
 
 class RailsEvalCommand(sublime_plugin.TextCommand):
     def run(self, edit):
